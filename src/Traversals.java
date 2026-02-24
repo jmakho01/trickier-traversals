@@ -99,7 +99,14 @@ public class Traversals {
    * @return true if there exists a strictly increasing root-to-leaf path, false otherwise
    */
   public static boolean hasStrictlyIncreasingPath(TreeNode<Integer> node) {
-    return false;
+    if(node == null) { return false; }
+    return hasStrictlyIncreasingPath(node.left, node.value) || hasStrictlyIncreasingPath(node.right, node.value);
+  }
+
+  public static boolean hasStrictlyIncreasingPath(TreeNode<Integer> node, int theValue) {
+    if(node == null) { return true; }
+    if(node.value < theValue) { return false; }
+    return hasStrictlyIncreasingPath(node.left, node.value) || hasStrictlyIncreasingPath(node.right, node.value);
   }
 
   // OPTIONAL CHALLENGE
